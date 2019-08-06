@@ -1,28 +1,58 @@
 <html>
   <head>
     <style>
-      #table{
+      /* #table{
         display: flex;
-
+        flex-direction: column;
+      } */
+      .header{
+        background-color: blue;
+        color: white;
+        text-align: center;
+      }
+      ul {
+        list-style: none;
       }
     </style>
   </head>
   <body>
-    <h1>Acme Employee Lister</h1>
-    <div id='table'>
+      <h1>Acme Employee Lister</h1>
+      <table id='table'>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Title</th>
+          </tr>
+          <!-- <tr id="firstName">
+          </tr>
+          <tr id="lastName">
+          </tr>
+          <tr id="email">
+          </tr>
+          <tr id="title">
+          </tr> -->
+        </table>
+
+    <!-- <div id='table'>
+
       <div >
+        <p>First Name</p>
         <ul id="firstName"></ul>
       </div>
       <div >
+        <p>Last Name</p>
         <ul id="lastName"></ul>
       </div>
       <div>
+        <p>Email</p>
         <ul id="email"></ul>
       </div>
       <div >
+        <p>Titel</p>
         <ul id="title"></ul>
       </div>
-    </div>
+    </div> -->
 
     <script>
       const loadList = async () => {
@@ -30,19 +60,19 @@
         const users = await response.json();
         const group = users.users;
         console.log(users.users)
-        const generateFirst = group.map( user => ` <li>${user.firstName}</li> `).join('');
+        const generateFirst = group.map( user => `<tr><td>${user.firstName}</td> <td>${user.lastName}</td> <td>${user.email}</td> <td>${user.title}</td></tr>`).join('');
         console.log(generateFirst);
-        const list = document.querySelector('#firstName');
-        list.innerHTML = generateFirst;
-        const last = document.querySelector('#lastName');
-        const generateLast = group.map( user => `<li>${user.lastName}</li>`).join('');
-        last.innerHTML = generateLast;
-        const email = document.querySelector('#email');
-        const generateEmail = group.map( user => `<li>${user.email}</li>`).join('');
-        email.innerHTML = generateEmail;
-        const title = document.querySelector('#title');
-        const generateTitle = group.map( user => `<li>${user.title}</li>`).join('');
-        title.innerHTML = generateTitle;
+        const list = document.querySelector('#table');
+        list.innerHTML = `<tr class='header'><td>Frist Name</td><td>Last Name</td><td>Email</td><td>Title</td></tr>` + generateFirst;
+        // const last = document.querySelector('#lastName');
+        // const generateLast = group.map( user => `<td>${user.lastName}</td>`).join('');
+        // last.innerHTML = generateLast;
+        // const email = document.querySelector('#email');
+        // const generateEmail = group.map( user => `<td>${user.email}</td>`).join('');
+        // email.innerHTML = generateEmail;
+        // const title = document.querySelector('#title');
+        // const generateTitle = group.map( user => `<td>${user.title}</td>`).join('');
+        // title.innerHTML = generateTitle;
 
       }
       loadList();
