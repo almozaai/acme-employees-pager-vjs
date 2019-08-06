@@ -4,13 +4,34 @@
     </style>
   </head>
   <body>
+    <h1>Acme Employee Lister</h1>
+    <div id='table'>
+      <div >
+        <ul id="firstName"></ul>
+      </div>
+      <div >
+        <ul id="lastName"></ul>
+      </div>
+      <div>
+        <ul id="email"></ul>
+      </div>
+      <div >
+        <ul id="title"></ul>
+      </div>
+    </div>
+
     <script>
       const loadList = async () => {
         const response = await fetch('https://acme-users-api-rev.herokuapp.com/api/users');
         const users = await response.json();
         console.log(users)
+        const generateHtml = users.map( user => ` <li>${user.fullName}</li> `).join('');
+        console.log(generateHtml);
+        const list = document.querySelector('#firstName');
+        list.innerHTML = generateHtml;
       }
       loadList()
+
     </script>
   </body>
 </html>
