@@ -1,6 +1,10 @@
 <html>
   <head>
     <style>
+      #table{
+        display: flex;
+
+      }
     </style>
   </head>
   <body>
@@ -24,13 +28,24 @@
       const loadList = async () => {
         const response = await fetch('https://acme-users-api-rev.herokuapp.com/api/users');
         const users = await response.json();
-        console.log(users)
-        const generateHtml = users.map( user => ` <li>${user.fullName}</li> `).join('');
-        console.log(generateHtml);
+        const group = users.users;
+        console.log(users.users)
+        const generateFirst = group.map( user => ` <li>${user.firstName}</li> `).join('');
+        console.log(generateFirst);
         const list = document.querySelector('#firstName');
-        list.innerHTML = generateHtml;
+        list.innerHTML = generateFirst;
+        const last = document.querySelector('#lastName');
+        const generateLast = group.map( user => `<li>${user.lastName}</li>`).join('');
+        last.innerHTML = generateLast;
+        const email = document.querySelector('#email');
+        const generateEmail = group.map( user => `<li>${user.email}</li>`).join('');
+        email.innerHTML = generateEmail;
+        const title = document.querySelector('#title');
+        const generateTitle = group.map( user => `<li>${user.title}</li>`).join('');
+        title.innerHTML = generateTitle;
+
       }
-      loadList()
+      loadList();
 
     </script>
   </body>
