@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script>
+      const loadList = async () => {
+        const response = await fetch('https://acme-users-api-rev.herokuapp.com/api/users');
+        const users = await response.json();
+        console.log(users)
+      }
+      loadList()
+    </script>
+  </body>
+</html>
